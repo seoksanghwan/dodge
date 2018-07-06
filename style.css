@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300");
+
+body,div,p,ul,li,ol,dl,dt,dd,h1,h2,h3,h4,h5,h6,table,td,th,header,article,footer,nav,section,input,select,a,button{ margin:0;padding:0; border:0; color:#474b53;font-size:14px;line-height:160%;font-family: sans-serif;}
+div,p,ul,li,ol,dl,dt,dd,h1,h2,h3,h4,h5,h6,span,header,article,footer,nav,section,img,a{position:relative;*zoom:1;}
+
+html{overflow-y:scroll;}
+ul , li { list-style:none; padding:0; margin:0;display:block;}
+img {	border:0; padding:0; border:0;}
+caption { display: none;}
+input{background:#fff;margin:0;padding:0;vertical-align: middle;outline:none;}
+input[type=text]{border:1px solid #d2d2d2;}
+input[type= tel]{border:1px solid #d2d2d2;}
+input[type= email]{border:1px solid #d2d2d2;}
+input[type=checkbox]{border:none;}
+input[type=password]{border:1px solid #d2d2d2;}
+select{border:1px solid #d2d2d2;}
+hr{display:none;}
+a{ border:0; padding:0; margin:0; text-decoration:none; outline:none; color:#474b53;}
+button{outline:none;}
+fieldset {margin:0; padding:0; border:0;}
+legend {display:none; padding:0;	margin:0;}
+label{vertical-align:middle;}
+
+table{padding:0;margin:0;border:0;}
+
+body{
+  background:#333;
+}
+header{
+	width: 100%;
+	max-width: 1920px;
+	margin:0 auto;
+	background :#e7f0f8;
+	text-align: right;
+}
+header .time{
+	padding:0.2% 1%;
+}
+header .time .num{
+	display: inline-block;
+	width: 57px;
+}
+header .time .num span{
+	display: inline-block;
+	width: 16px;
+}
+
+main {
+	width: 800px;
+	height: 500px;
+	margin: 40px auto 0 auto;
+	position: relative;
+}
+
+.bulletGame{
+	width: 506px;
+	height: 500px;
+	background: url(https://c.pxhere.com/photos/89/8e/milky_way_stars_galaxy_space_universe_astronomy_night_sky-496627.jpg!d);
+	background-size: 506px 500px;
+	margin : auto auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	overflow: hidden;
+}
+
+.ship{
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: left .5s , top .5s ;
+}
+
+.ship img{
+	width: 100%;
+}
+
+
+
+.bulletGame li{
+	width: 6px;
+	height: 6px;
+	border-radius: 100%;
+	background: yellow;
+	position: absolute;
+	left : -100%;
+	right : -100%;
+	top : -100%;
+	bottom : -100%;
+	transition: left 3s , top 3s, right 3s, bottom 3s ;
+}
+
