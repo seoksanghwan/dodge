@@ -1,18 +1,4 @@
-let canvas = document.getElementById("canvasbox");
-let ctx = canvas.getContext("2d");
-let ship = document.querySelector(".ship");
-
-let movePoint = [0,0,0,0];
-let shipFocus = [800/2-5,500/2-5, 8];
-
-ctx.beginPath();
-ctx.fillStyle = "black";
-ctx.fillRect(0,0,800, 500)
-function spaceBackground (ctx) {
-
-}
-(function watch () {
-		
+(function watch () {	
   let today = new Date();
   let month = today.getMonth();
   let date = today.getDate();
@@ -38,88 +24,85 @@ function spaceBackground (ctx) {
   time.innerHTML = `${month+1}월 ${date}일 (${dayName[day]}) ${AmPm}<div class='num'> <span>${hour}</span>:<span>${min}</span>:<span>${sec}</span> </div>`
 
   setTimeout(watch,500);
-
 })();
 
-/*let theThing = document.querySelector(".fly");
-let container = document.querySelector(".bulletGame");*/
+let keys = {};
+keys.UP = 38;
+keys.LEFT = 37;
+keys.RIGHT = 39
+keys.DOWN = 40;
 
-let pos = 4;
+let ship = {
+	x: 280,
+	y: 230,
+	spped: 2,
+	element: document.getElementById("ship")
+};
 
+let main = document.querySelector('main');
 
-
-
-window.addEventListener("keydown", ddd);
-
-function ddd (event) {
-
-	if(event.keyCode == 39){  
-		ship.style.left += pos+'px'
-		}
-
-	if(event.keyCode == 37){  
-		ship.style.left += pos+'px'
+document.body.onkeyup =
+document.body.onkeydown = function(event){
+	if (event.preventDefault) {
+		event.preventDefault();
+	} else {
+		event.returnValue = false; 
 	}
-
-	if(event.keyCode == 38){  
-		ship.style.top += pos+'px'
-	}
-
-	if(event.keyCode == 40){  
-		ship.style.top += pos+'px'
-	}
-	
+	var kc = event.keyCode || event.which;
+	keys[kc] = event.type == 'keydown';
 }
 
-setInterval(ddd,1)
 
-/*
-for(let idx = 0 ; idx < 50; idx++){
-	let li = document.createElement('li');
-	li.className = 'bullet';
-	container.appendChild(li);
+var moveShip = function (dx, dy) {
+  
+  ship.x += (dx||0) * ship.spped;
+  ship.y += (dy||0) * ship.spped;
+  ship.element.style.left = ship.x + 'px';
+  ship.element.style.top = ship.y + 'px';
 }
 
-function bulletMove () {
-	let li = document.querySelectorAll('.bullet');
-	li.forEach(function (Li) {
-		Li.style.left = Math.floor(Math.random()*800) + 'px';	
-		Li.style.top = Math.floor(Math.random()*800) + 'px';	
-		Li.style.bottom = Math.floor(Math.random()*800) + 'px';	
-		Li.style.right = Math.floor(Math.random()*800) + 'px';	
-	})
-	
-	setTimeout(bulletMove,500);
-}
-bulletMove ();
-
-*/
-
-
-
-
-
-//setInterval(updateKeys, 1);
-
-/*function moveShip () {
-	if(movePoint[0] === 1)shipFocus[1] -=4;
-	if(movePoint[1] === 1)shipFocus[1] +=4;
-	if(movePoint[2] === 1)shipFocus[0] -=4;
-	if(movePoint[3] === 1)shipFocus[0] +=4;
+var shipMoving = function () {
+	if ( keys[keys.LEFT] ) {
+	  !(ship.element.style.left === '0px') ? moveShip(-1, 0) : false;
+    }
+    if ( keys[keys.RIGHT] ) {
+      !(ship.element.style.left === '580px') ? moveShip(1, 0) : false;
+    }
+    if ( keys[keys.UP] ) {
+      !(ship.element.style.top === '0px') ? moveShip(0, -1) : false;	
+    }
+    if ( keys[keys.DOWN] ) {
+      !(ship.element.style.top === '480px') ? moveShip(0, 1) : false;	
+    }
 }
 
-function keyup(){
-	if(event.keyCode == 38) movePoint[0] = 0;
-	if(event.keyCode == 40) movePoint[1] = 0;
-	if(event.keyCode == 37) movePoint[2] = 0;
-	if(event.keyCode == 39) movePoint[3] = 0;
-}
-function keydown(){
-	if(event.keyCode == 38) movePoint[0] = 1;
-	if(event.keyCode == 40) movePoint[1] = 1;
-	if(event.keyCode == 37) movePoint[2] = 1;
-	if(event.keyCode == 39) movePoint[3] = 1;
-}
-*/
+moveShip();
+
+setInterval(function(){
+  shipMoving();
+}, 1000/500);
 
 
+function makeBullet () {
+  for(var idx = 0; idx < 100; idx++){
+	var div = document.createElement('div')
+	div.className = 'bullet';
+	main.appendChild(div);
+  }
+}
+makeBullet ()
+
+
+function moveBullet (dx, dy) {
+ let bullet = main.querySelectorAll('.bullet');
+ bullet.forEach( function (idx) {
+ 	idx.style.left = Math.floor(Math.random()*1000) + 'px';
+ 	idx.style.right = Math.floor(Math.random()*1000) + 'px';
+ 	idx.style.top = Math.floor(Math.random()*1000) + 'px';
+ 	idx.style.bottom = Math.floor(Math.random()*1000) + 'px';
+ });
+}
+
+setInterval(function(){
+  moveBullet();
+}, 1000);
