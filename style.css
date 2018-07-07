@@ -51,7 +51,7 @@ main {
 	margin: 40px auto 0 auto;
 	position: relative;
 	overflow: hidden;
-	background:url("http://otcc.us/wp-content/uploads/2018/02/space-powerpoint-background-space-wallpaper-hd-2977-free.png") repeat-y;
+	background:url("http://www.tilemagic.co.uk/media/catalog/product/s/t/star-galaxy-granite-300x600-single.jpg") repeat-y;
 	opacity: 0.8;
 	animation-duration: 50s;
 	animation-iteration-count: infinite;
@@ -72,6 +72,7 @@ main {
   width: 20px;
   height: 20px;
   position: absolute;
+  z-index: 1;
 }
 
 #ship img{
@@ -80,10 +81,9 @@ main {
 
 
 .bullet{
-	width: 4px;
-	height: 4px;
-	position: absolute;
 	background: yellow;
-	border-radius: 100%;
-	transition: left 2s, top 2s, right 2s, bottom 2s;
+	width: 7px;
+	height: 7px;
+	position: absolute;
+	border-radius: 100%;;
 }
