@@ -69,8 +69,8 @@ main {
 }
 
 #ship{
-  width: 20px;
-  height: 20px;
+  width: 26px;
+  height: 28px;
   position: absolute;
   z-index: 1;
 }
